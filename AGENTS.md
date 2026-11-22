@@ -1,4 +1,5 @@
 <!-- LOVABLE:BEGIN -->
+
 > [!IMPORTANT]
 > This project is connected to [Lovable](https://lovable.dev). Avoid rewriting
 > published git history — force pushing, or rebasing/amending/squashing commits
@@ -27,4 +28,12 @@ use the editor.
   `LOVABLE_API_KEY`. When Lovable does not provide one, users can bring their
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
+
 <!-- LOVABLE:END -->
+
+## Application conventions
+
+- Keep public account pages at top level and private workspace pages under the client-only authenticated layout; browser-owned sessions cannot be checked during SSR.
+- Maintain one root account listener and a shared session context so header actions reflect sign-in and sign-out consistently.
+- Use PascalCase for new reusable React component files; route filenames retain TanStack routing conventions.
+- Use only managed auth accounts until profile fields are required; do not introduce application tables for account-only flows.
