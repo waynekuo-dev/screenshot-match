@@ -113,7 +113,7 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 56px 24px 52px;
+  padding: 38px 24px 30px;
   overflow: hidden;
 }
 .hero-photo {
@@ -142,8 +142,8 @@
   letter-spacing: 2px;
 }
 .hero h1 {
-  margin: 21px 0 14px;
-  font-size: 66px;
+  margin: 13px 0 9px;
+  font-size: 52px;
   line-height: 1.1;
   font-weight: 600;
 }
@@ -156,20 +156,20 @@
 .hero-subtitle {
   color: var(--muted-foreground);
   font-size: 15px;
-  margin-top: 11px;
+  margin-top: 9px;
 }
 .hero-action {
   height: 46px;
-  margin-top: 26px;
+  margin-top: 20px;
   box-shadow: var(--button-shadow);
 }
 .hero-note {
-  margin-top: 14px;
+  margin-top: 11px;
   font-size: 11px;
   color: var(--muted-foreground);
 }
 .hero-bottom {
-  margin-top: 44px;
+  margin-top: 24px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -184,13 +184,13 @@
   gap: 7px;
 }
 .features {
-  padding: 42px 0 64px;
+  padding: 24px 0 56px;
 }
 .section-heading {
   display: flex;
   justify-content: space-between;
   align-items: end;
-  margin-bottom: 27px;
+  margin-bottom: 20px;
 }
 .section-heading h2 {
   margin: 0 0 8px;
@@ -341,7 +341,7 @@
   }
   .hero {
     min-height: auto;
-    padding-top: 48px;
+    padding-top: 32px;
   }
   .hero h1 {
     font-size: 43px;
@@ -367,7 +367,7 @@
     width: 12px;
   }
   .features {
-    padding-top: 28px;
+    padding-top: 20px;
   }
   .section-heading {
     display: block;
