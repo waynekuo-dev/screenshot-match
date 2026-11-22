@@ -1,24 +1,19 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { useOutletContext } from "react-router-dom";
 import { AudioLines, Clock3 } from "lucide-react";
+import type { User } from "@supabase/supabase-js";
 import { SiteHeader, SiteFooter } from "@/components/SiteHeader";
-export const Route = createFileRoute("/_authenticated/app")({
-  head: () => ({
-    meta: [
-      { title: "Your Workspace | Video Speed Reader" },
-      { name: "description", content: "Your personal Video Speed Reader workspace." },
-      { property: "og:title", content: "Your Workspace | Video Speed Reader" },
-      { property: "og:description", content: "Your Video Speed Reader dashboard." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "robots", content: "noindex" },
-    ],
-  }),
-  component: App,
-});
-function App() {
-  const { user } = Route.useRouteContext();
+import { PageMeta } from "@/components/PageMeta";
+
+export default function Workspace() {
+  const { user } = useOutletContext<{ user: User }>();
   return (
     <>
+      <PageMeta
+        title="Your Workspace | Video Speed Reader"
+        description="Your personal Video Speed Reader workspace."
+        ogDescription="Your Video Speed Reader dashboard."
+        noindex
+      />
       <SiteHeader account />
       <main className="dashboard container-wide fade-in">
         <p className="eyebrow">YOUR WORKSPACE</p>

@@ -12,17 +12,13 @@ const user: User = {
 };
 describe("Private workspace access", () => {
   it("redirects signed-out visitors to sign-in", () => {
-    try {
-      requireAccount(null, false);
-      expect.fail("Must reject signed-out users");
-    } catch (error) {
-      expect(error).toMatchObject({ options: { to: "/auth" } });
-    }
+    expect(requireAccount(null, false)).toEqual({ redirect: "/auth" });
   });
   it("rejects a failed account verification even with a cached user", () => {
-    expect(() => requireAccount(user, true)).toThrow();
+    expect(requireAccount(user, true)).toEqual({ redirect: "/auth" });
   });
-  it("returns the verified user email for the dashboard greeting", () => {
-    expect(requireAccount(user, false).user.email).toBe("user@example.com");
+  it("returns the verified user for the dashboard greeting", () => {
+    const decision = requireAccount(user, false);
+    expect("user" in decision && decision.user.email).toBe("user@example.com");
   });
 });

@@ -1,4 +1,5 @@
-import { Link, useNavigate, useRouter } from "@tanstack/react-router";
+import { Link, useNavigate } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 import { AudioLines, ArrowUpRight, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAccount } from "@/components/account/SessionContext";
@@ -17,21 +18,20 @@ export function Brand() {
 export function SiteHeader({ account = false }: { account?: boolean }) {
   const user = useAccount();
   const navigate = useNavigate();
-  const router = useRouter();
+  const queryClient = useQueryClient();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   async function signOut() {
     setBusy(true);
-    const client = router.options.context.queryClient;
-    await client.cancelQueries();
-    client.clear();
+    await queryClient.cancelQueries();
+    queryClient.clear();
     const result = await supabase.auth.signOut();
     setBusy(false);
     if (result.error) {
       setError(result.error.message);
       return;
     }
-    await navigate({ to: "/auth", replace: true });
+    navigate("/auth", { replace: true });
   }
   return (
     <header className="site-header">

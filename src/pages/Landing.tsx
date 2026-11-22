@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import {
   ArrowRight,
   AudioLines,
@@ -12,28 +12,10 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SiteHeader, SiteFooter } from "@/components/SiteHeader";
+import { PageMeta } from "@/components/PageMeta";
 import { useAccount } from "@/components/account/SessionContext";
 import studio from "@/assets/studio.asset.json";
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Video Speed Reader — From Video to Words" },
-      {
-        name: "description",
-        content:
-          "上傳影片，三分鐘內拿到逐字稿。Upload your video, get a clean transcript in three minutes. Built for creators, educators, and engineers.",
-      },
-      { property: "og:title", content: "Video Speed Reader — From Video to Words" },
-      {
-        property: "og:description",
-        content: "Upload your video, get a clean transcript in three minutes.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
-  component: Index,
-});
+
 const features = [
   {
     icon: AudioLines,
@@ -60,10 +42,16 @@ const features = [
     tagIcon: Check,
   },
 ];
-function Index() {
+
+export default function Landing() {
   const user = useAccount();
   return (
     <>
+      <PageMeta
+        title="Video Speed Reader — From Video to Words"
+        description="上傳影片，三分鐘內拿到逐字稿。Upload your video, get a clean transcript in three minutes. Built for creators, educators, and engineers."
+        ogDescription="Upload your video, get a clean transcript in three minutes."
+      />
       <SiteHeader />
       <main>
         <section className="hero">

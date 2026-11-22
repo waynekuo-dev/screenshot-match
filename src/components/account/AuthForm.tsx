@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight, AudioLines, Eye, EyeOff, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -33,7 +33,7 @@ export function AuthForm({ signup = false }: { signup?: boolean }) {
         setConfirmed(true);
         return;
       }
-      await navigate({ to: "/app" });
+      navigate("/app");
     } catch {
       setError("Unable to connect. Please try again.");
     } finally {
