@@ -1,13 +1,10 @@
 import { Component, type ReactNode } from "react";
 
-import { reportLovableError } from "../lib/lovable-error-reporting";
-
 type Props = { children: ReactNode };
 type State = { error: Error | null };
 
 /**
- * App-wide error boundary. Mirrors the previous root errorComponent: logs the
- * error, reports it to Lovable telemetry, and offers retry / go-home actions.
+ * App-wide error boundary. Logs the error and offers retry / go-home actions.
  */
 export class AppErrorBoundary extends Component<Props, State> {
   override state: State = { error: null };
@@ -18,7 +15,6 @@ export class AppErrorBoundary extends Component<Props, State> {
 
   override componentDidCatch(error: Error) {
     console.error(error);
-    reportLovableError(error, { boundary: "app_error_boundary" });
   }
 
   reset = () => {
