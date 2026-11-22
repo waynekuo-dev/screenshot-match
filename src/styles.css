@@ -99,12 +99,12 @@
 .hero {
   position: relative;
   isolation: isolate;
-  min-height: 690px;
+  min-height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 56px 24px 0;
+  padding: 56px 24px 52px;
   overflow: hidden;
 }
 .hero-photo {
@@ -160,9 +160,10 @@
   color: var(--muted-foreground);
 }
 .hero-bottom {
-  position: absolute;
-  bottom: 34px;
+  margin-top: 44px;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
   gap: 25px;
   font-size: 11px;
@@ -330,7 +331,7 @@
     height: 29px;
   }
   .hero {
-    min-height: 640px;
+    min-height: auto;
     padding-top: 48px;
   }
   .hero h1 {
