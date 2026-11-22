@@ -1,7 +1,9 @@
+"use client";
+
 import { AuthForm } from "@/components/account/AuthForm";
 import { PageMeta } from "@/components/PageMeta";
 
-export default function SignIn() {
+export default function AuthPage() {
   return (
     <>
       <PageMeta

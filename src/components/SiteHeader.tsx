@@ -1,13 +1,17 @@
-import { Link, useNavigate } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
 import { AudioLines, ArrowUpRight, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAccount } from "@/components/account/SessionContext";
-import { supabase } from "@/integrations/supabase/client";
+import { supabase } from "@/lib/supabase/client";
 import { useState } from "react";
+
 export function Brand() {
   return (
-    <Link to="/" className="brand">
+    <Link href="/" className="brand">
       <span className="brand-mark">
         <AudioLines size={21} />
       </span>
@@ -15,9 +19,10 @@ export function Brand() {
     </Link>
   );
 }
+
 export function SiteHeader({ account = false }: { account?: boolean }) {
   const user = useAccount();
-  const navigate = useNavigate();
+  const router = useRouter();
   const queryClient = useQueryClient();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
@@ -31,7 +36,8 @@ export function SiteHeader({ account = false }: { account?: boolean }) {
       setError(result.error.message);
       return;
     }
-    navigate("/auth", { replace: true });
+    router.replace("/auth");
+    router.refresh();
   }
   return (
     <header className="site-header">
@@ -50,7 +56,7 @@ export function SiteHeader({ account = false }: { account?: boolean }) {
             </Button>
           ) : (
             <Button asChild size="sm">
-              <Link to={user ? "/app" : "/auth"}>
+              <Link href={user ? "/app" : "/auth"}>
                 {user ? "Open dashboard" : "Sign in / 登入"}
                 <ArrowUpRight />
               </Link>
@@ -61,6 +67,7 @@ export function SiteHeader({ account = false }: { account?: boolean }) {
     </header>
   );
 }
+
 export function SiteFooter() {
   return (
     <footer className="site-footer">

@@ -1,11 +1,10 @@
-import { useOutletContext } from "react-router-dom";
+"use client";
+
 import { AudioLines, Clock3 } from "lucide-react";
-import type { User } from "@supabase/supabase-js";
 import { SiteHeader, SiteFooter } from "@/components/SiteHeader";
 import { PageMeta } from "@/components/PageMeta";
 
-export default function Workspace() {
-  const { user } = useOutletContext<{ user: User }>();
+export function Workspace({ email }: { email: string }) {
   return (
     <>
       <PageMeta
@@ -17,7 +16,7 @@ export default function Workspace() {
       <SiteHeader account />
       <main className="dashboard container-wide fade-in">
         <p className="eyebrow">YOUR WORKSPACE</p>
-        <h1>Hi {user.email}</h1>
+        <h1>Hi {email}</h1>
         <div className="dashboard-empty">
           <span className="feature-icon">
             <AudioLines size={30} />

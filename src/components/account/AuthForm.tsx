@@ -1,12 +1,16 @@
+"use client";
+
 import { useState, type FormEvent } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ArrowRight, AudioLines, Eye, EyeOff, Loader2 } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { supabase } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { SiteHeader, SiteFooter } from "@/components/SiteHeader";
+
 export function AuthForm({ signup = false }: { signup?: boolean }) {
-  const navigate = useNavigate();
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
@@ -33,7 +37,8 @@ export function AuthForm({ signup = false }: { signup?: boolean }) {
         setConfirmed(true);
         return;
       }
-      navigate("/app");
+      router.push("/app");
+      router.refresh();
     } catch {
       setError("Unable to connect. Please try again.");
     } finally {
@@ -113,12 +118,12 @@ export function AuthForm({ signup = false }: { signup?: boolean }) {
           )}
           <p className="mt-7 text-center text-sm text-muted-foreground">
             {signup ? "Already have an account?" : "New to Video Speed Reader?"}{" "}
-            <Link className="text-primary hover:underline" to={signup ? "/auth" : "/sign-up"}>
+            <Link className="text-primary hover:underline" href={signup ? "/auth" : "/sign-up"}>
               {signup ? "Sign in" : "Create an account"}
             </Link>
           </p>
           <p className="mt-10 text-center text-xs text-muted-foreground">
-            <Link to="/">← Back to home</Link>
+            <Link href="/">← Back to home</Link>
           </p>
         </div>
       </main>

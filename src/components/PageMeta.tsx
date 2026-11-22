@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect } from "react";
 
 type MetaEntry = { property?: string; name?: string; content: string };

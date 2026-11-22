@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
 import {
   ArrowRight,
   AudioLines,
@@ -43,7 +45,7 @@ const features = [
   },
 ];
 
-export default function Landing() {
+export default function LandingPage() {
   const user = useAccount();
   return (
     <>
@@ -72,7 +74,7 @@ export default function Landing() {
             Upload your video, get a clean transcript in three minutes.
           </p>
           <Button size="lg" asChild className="hero-action fade-in">
-            <Link to={user ? "/app" : "/sign-up"}>
+            <Link href={user ? "/app" : "/sign-up"}>
               {user ? "Open your workspace" : "Get started / 開始使用"}
               <ArrowRight />
             </Link>
